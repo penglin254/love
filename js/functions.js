@@ -15,11 +15,6 @@ $(function () {
     gardenCtx = gardenCanvas.getContext("2d");
     gardenCtx.globalCompositeOperation = "lighter";
     garden = new Garden(gardenCtx, gardenCanvas);
-	
-	setTimeout(function() {
-		var music = document.getElementById("music");
-	 music.play();
-	}, 30);
 	 
 
 	$("#content").css("width", clientWidth);
@@ -32,6 +27,27 @@ $(function () {
         garden.render();
     }, Garden.options.growSpeed);
 });
+
+document.addEventListener('DOMContentLoaded', function () {
+    function audioAutoPlay() {
+        var audio = document.getElementById('music');
+            audio.play();
+        document.addEventListener("WeixinJSBridgeReady", function () {
+            audio.play();
+        }, false);
+    }
+    audioAutoPlay();
+});
+
+//--创建触摸监听，当浏览器打开页面时，触摸屏幕触发事件，进行音频播放
+document.addEventListener('touchstart', function () {
+    function audioAutoPlay() {
+        var audio = document.getElementById('music');
+            audio.play();
+    }
+    audioAutoPlay();
+});
+
 
 $(window).resize(function() {
     var newWidth = $(window).width();
@@ -118,6 +134,7 @@ function timeElapse(date){
 	}
 	var result = "<span class=\"digit\">" + days + "</span> days <span class=\"digit\">" + hours + "</span> hours <span class=\"digit\">" + minutes + "</span> minutes <span class=\"digit\">" + seconds + "</span> seconds"; 
 	$("#elapseClock").html(result);
+	
 }
 
 function showMessages() {
