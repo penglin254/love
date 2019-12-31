@@ -16,6 +16,12 @@ $(function () {
     gardenCtx.globalCompositeOperation = "lighter";
     garden = new Garden(gardenCtx, gardenCanvas);
 	
+	setTimeout(function() {
+		var music = document.getElementById("music");
+	 music.play();
+	}, 30);
+	 
+
 	$("#content").css("width", clientWidth);
 	$("#content").css("height", Math.max($loveHeart.height(), $("#code").height()));
 	// $("#content").css("margin-top", Math.max(($window.height() - $("#content").height()) / 2, 10));
